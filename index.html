@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事项日历管理系统</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <h1>事项管理系统</h1>
+        <div class="header-actions">
+            <button id="exportBtn">导出数据</button>
+            <input type="file" id="importFile" accept=".csv" style="display: none;">
+            <button id="importBtn">导入数据</button>
+            <div class="theme-switcher">
+                <button class="theme-btn" data-theme="light">浅色</button>
+                <button class="theme-btn" data-theme="dark">深色</button>
+                <button class="theme-btn" data-theme="eye-care">护眼</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <!-- 左侧：事项管理表格 -->
+        <section class="table-section">
+            <div class="section-header">
+                <h2>事项管理</h2>
+                <button id="addTaskBtn" class="primary-btn">新增事项</button>
+            </div>
+
+            <!-- 筛选区域 -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <select id="typeFilter">
+                        <option value="">所有类型</option>
+                        <option value="知识点复习">知识点复习</option>
+                        <option value="习题练习">习题练习</option>
+                        <option value="错题复盘">错题复盘</option>
+                    </select>
+                    
+                    <select id="priorityFilter">
+                        <option value="">所有优先级</option>
+                        <option value="高">高</option>
+                        <option value="中">中</option>
+                        <option value="低">低</option>
+                    </select>
+                    
+                    <select id="statusFilter">
+                        <option value="">所有状态</option>
+                        <option value="true">已完成</option>
+                        <option value="false">未完成</option>
+                    </select>
+                    
+                    <div class="date-range">
+                        <input type="date" id="startDate">
+                        <span>至</span>
+                        <input type="date" id="endDate">
+                    </div>
+                    
+                    <button id="resetFilterBtn">重置筛选</button>
+                </div>
+            </div>
+
+            <!-- 批量操作区域 -->
+            <div class="batch-actions" style="margin-bottom: 10px;">
+                <input type="checkbox" id="selectAll">
+                <label for="selectAll">全选</label>
+                <button id="batchDeleteBtn" class="danger-btn" style="margin-left: 10px;">批量删除</button>
+            </div>
+
+            <!-- 事项表格 -->
+            <div class="table-container">
+                <table id="taskTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;"></th>
+                            <th style="width: 120px;">日期</th>
+                            <th style="width: 200px;">事项名称</th>
+                            <th style="width: 120px;">事项类型</th>
+                            <th style="width: 80px;">优先级</th>
+                            <th style="width: 80px;">完成状态</th>
+                            <th style="width: 120px;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody">
+                        <!-- 动态生成表格内容 -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 右侧：日历渲染 -->
+        <section class="calendar-section">
+            <div class="section-header">
+                <h2>日历视图</h2>
+                <div class="calendar-nav">
+                    <button id="prevMonthBtn">&lt;</button>
+                    <span id="currentMonth"></span>
+                    <button id="nextMonthBtn">&gt;</button>
+                    <button id="todayBtn" style="margin-left: 5px;">今日</button>
+                </div>
+            </div>
+
+            <!-- 日历主体 -->
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <div class="weekday">日</div>
+                    <div class="weekday">一</div>
+                    <div class="weekday">二</div>
+                    <div class="weekday">三</div>
+                    <div class="weekday">四</div>
+                    <div class="weekday">五</div>
+                    <div class="weekday">六</div>
+                </div>
+                <div class="calendar-body" id="calendarBody">
+                    <!-- 动态生成日历内容 -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 新增/编辑事项弹窗 -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">新增事项</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="taskForm">
+                <input type="hidden" id="taskId">
+                <div class="form-row">
+                    <label for="taskDate">日期 <span class="required">*</span></label>
+                    <input type="date" id="taskDate" required>
+                </div>
+                <div class="form-row">
+                    <label for="taskName">事项名称 <span class="required">*</span></label>
+                    <input type="text" id="taskName" required placeholder="请输入事项名称">
+                </div>
+                <div class="form-row">
+                    <label for="taskType">事项类型</label>
+                    <div class="type-selector">
+                        <select id="taskType">
+                            <option value="知识点复习">知识点复习</option>
+                            <option value="习题练习">习题练习</option>
+                            <option value="错题复盘">错题复盘</option>
+                        </select>
+                        <div class="add-type">
+                            <input type="text" id="newTypeInput" placeholder="新增类型">
+                            <button id="addTypeBtn" class="small-btn">添加</button>
+                        </div>
+                        <div class="type-management">
+                            <button id="manageTypeBtn" class="small-btn">管理类型</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="taskPriority">优先级</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="priority" value="高" checked> 高</label>
+                        <label><input type="radio" name="priority" value="中"> 中</label>
+                        <label><input type="radio" name="priority" value="低"> 低</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="taskNote">备注</label>
+                    <textarea id="taskNote" rows="3" placeholder="请输入备注信息"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelBtn" class="cancel-btn">取消</button>
+                    <button type="submit" class="submit-btn">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 类型管理模态框 -->
+    <div id="typeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>管理事项类型</h3>
+                <button class="close-btn" id="closeTypeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="typeList"></div>
+            </div>
+            <div class="form-actions" style="border-top: 1px solid var(--border-color); padding: 1rem; margin: 0;">
+                <button type="button" id="closeTypeBtn" class="cancel-btn">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示框 -->
+    <div id="toast" class="toast"></div>
+
+    <!-- 页脚作者信息 -->
+    <footer class="footer">
+        <p>作者：名字大大鸣</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

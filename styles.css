@@ -1,0 +1,644 @@
+/* CSS变量定义 - 主题样式 */
+:root {
+    /* 默认主题变量（浅色主题） */
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --highlight-color: #4a90e2;
+    --secondary-color: #f5f5f5;
+    --success-color: #52c41a;
+    --danger-color: #ff4d4f;
+    --warning-color: #faad14;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --calendar-today-bg: #e6f7ff;
+    --calendar-task-bg: #fffbe6;
+}
+
+/* 浅色主题 */
+body.light {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --highlight-color: #4a90e2;
+    --secondary-color: #f5f5f5;
+    --success-color: #52c41a;
+    --danger-color: #ff4d4f;
+    --warning-color: #faad14;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --calendar-today-bg: #e6f7ff;
+    --calendar-task-bg: #fffbe6;
+}
+
+/* 深色主题 */
+body.dark {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --border-color: #333333;
+    --highlight-color: #69b1ff;
+    --secondary-color: #2d2d2d;
+    --success-color: #73d13d;
+    --danger-color: #ff7875;
+    --warning-color: #ffd666;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --calendar-today-bg: #1890ff;
+    --calendar-task-bg: #faad14;
+}
+
+/* 护眼主题 */
+body.eye-care {
+    --bg-color: #f0f2f5;
+    --text-color: #262626;
+    --border-color: #d9d9d9;
+    --highlight-color: #52c41a;
+    --secondary-color: #e6f7ff;
+    --success-color: #389e0d;
+    --danger-color: #cf1322;
+    --warning-color: #d48806;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    --calendar-today-bg: #95de64;
+    --calendar-task-bg: #ffe58f;
+}
+
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+/* 顶部导航栏 */
+.header {
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    color: var(--highlight-color);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* 主题切换按钮 */
+.theme-switcher {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.theme-btn {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+    background-color: var(--highlight-color);
+    color: white;
+}
+
+/* 主内容区域 */
+.main-content {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* 左侧表格区域 */
+.table-section {
+    flex: 1;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+}
+
+/* 右侧日历区域 */
+.calendar-section {
+    width: 550px;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+}
+
+/* 区域标题 */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-header h2 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+/* 按钮样式 */
+.primary-btn {
+    background-color: var(--highlight-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
+}
+
+button {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--highlight-color);
+    color: white;
+}
+
+.danger-btn {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+}
+
+.danger-btn:hover {
+    opacity: 0.9;
+}
+
+/* 筛选区域 */
+.filter-section {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.filter-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-row select,
+.filter-row input[type="date"] {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.date-range {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* 批量操作区域 */
+.batch-actions {
+    display: flex;
+    align-items: center;
+}
+
+.batch-actions input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* 表格样式 */
+.table-container {
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-color);
+}
+
+th, td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+tr:hover {
+    background-color: var(--secondary-color);
+}
+
+/* 状态切换按钮 */
+.status-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+
+/* 操作按钮组 */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-buttons button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+/* 日历样式 */
+.calendar-container {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.calendar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.calendar-nav button {
+    height: 30px;
+    padding: 0 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-nav button:not(#todayBtn) {
+    width: 30px;
+    padding: 0;
+}
+
+#currentMonth {
+    font-weight: 600;
+    min-width: 120px;
+    text-align: center;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.weekday {
+    padding: 0.8rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    height: 450px;
+}
+
+.calendar-day {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.calendar-day:hover {
+    background-color: var(--secondary-color);
+}
+
+.calendar-day.today {
+    background-color: var(--calendar-today-bg);
+    color: white;
+    font-weight: 600;
+}
+
+.calendar-day.has-task {
+    background-color: var(--calendar-task-bg);
+}
+
+.calendar-day.other-month {
+    color: #999;
+    background-color: var(--secondary-color);
+}
+
+.day-number {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.day-tasks {
+    margin-top: 0.3rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.task-item {
+    margin-bottom: 0.2rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    width: 90%;
+    max-width: 500px;
+    animation: slideIn 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h3 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 表单样式 */
+form {
+    padding: 1.5rem;
+}
+
+.form-row {
+    margin-bottom: 1rem;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.form-row textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.required {
+    color: var(--danger-color);
+}
+
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* 事项类型选择器样式 */
+.type-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.add-type {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.add-type input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.type-management {
+    text-align: right;
+}
+
+.small-btn {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    background-color: var(--highlight-color);
+    color: white;
+    border: none;
+}
+
+.small-btn:hover {
+    opacity: 0.9;
+}
+
+/* 禁用状态的删除按钮 */
+button:disabled {
+    background-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+}
+
+/* 模态框内容区域 */
+.modal-body {
+    padding: 1.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* 提示框样式 */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    z-index: 2000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.success {
+    background-color: var(--success-color);
+}
+
+.toast.error {
+    background-color: var(--danger-color);
+}
+
+.toast.info {
+    background-color: var(--highlight-color);
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 页脚样式 */
+.footer {
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    color: #999;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--secondary-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .main-content {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .calendar-section {
+        width: 100%;
+        margin-top: 2rem;
+    }
+    
+    .calendar-body {
+        height: 400px;
+    }
+}
